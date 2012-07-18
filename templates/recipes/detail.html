@@ -1,0 +1,35 @@
+<h1>{{ recipe.title }}</h1>
+<p>{% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
+{% else %}<a href="add-favorite">Add to Favorites</a>{% endif %}</p>
+
+<p class="description">{{ recipe.description }}</p>
+
+{% if recipe.ingredient_set.all|length > 0 %}
+<h2>Ingredients</h2>
+<ul class="ingredients">
+  {% for i in recipe.ingredient_set.all %}
+  <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if recipe.step_set.all|length > 0 %}
+<h2>Steps</h2>
+<ol class="steps">
+  {% for s in recipe.step_set.all %}
+  <li>{{ s.step_text }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
+
+{% if recipe.note_set.all|length > 0 %}
+<h2>Notes</h2>
+<ul class="notes">
+  {% for n in recipe.note_set.all %}
+  <li>{{ n.note_text }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<p><a href="/recipes/" title="All Recipes">View All Recipes</a></p>
+<p><a href="/recipes/favorites" title="Favorite Recipes">View My Favorite Recipes</a></p>

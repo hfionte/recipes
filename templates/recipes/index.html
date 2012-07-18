@@ -1,0 +1,9 @@
+<h1>Recipes</h1>
+<ul>
+{% for r in all_recipes %}
+  <li><strong><a href="/recipes/{{ r.slug }}/" title="{{ r.title }}">{{ r.title }}</a></strong><br>
+  {{ r.description }}</li>
+{% endfor %}
+</ul>
+
+<p><a href="/recipes/favorites/">View My Favorite Recipes</a></p>

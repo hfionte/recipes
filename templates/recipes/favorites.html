@@ -1,0 +1,13 @@
+<h1>My Favorite Recipes</h1>
+{% if favorites|length > 0 %}
+<ul>
+  {% for f in favorites %}
+  <li><strong><a href="/recipes/{{ f.recipe.slug }}/" title="{{ f.recipe.title }}">{{ f.recipe.title }}</a></strong> <em>(<a href="/recipes/{{ f.recipe.slug }}/delete-favorite/">delete</a>)</em>{% if f.recipe.description %}<br>
+{{ f.recipe.description }}{% endif %}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>You have no favorie recipes selected.</p>
+{% endif %}
+
+<p><a href="/recipes/">View All Recipes</a></p>
