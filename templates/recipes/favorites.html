@@ -2,8 +2,8 @@
 {% if favorites|length > 0 %}
 <ul>
   {% for f in favorites %}
-  <li><strong><a href="/recipes/{{ f.recipe.slug }}/" title="{{ f.recipe.title }}">{{ f.recipe.title }}</a></strong> <em>(<a href="/recipes/{{ f.recipe.slug }}/delete-favorite/">delete</a>)</em>{% if f.recipe.description %}<br>
-{{ f.recipe.description }}{% endif %}</li>
+  <li><strong><a href="/recipes/{{ f.slug }}/" title="{{ f.title }}">{{ f.title }}</a></strong> <em>(<a href="/recipes/{{ f.slug }}/delete-favorite/">delete</a>)</em>{% if f.description %}<br>
+{{ f.description }}{% endif %}</li>
   {% endfor %}
 </ul>
 {% else %}

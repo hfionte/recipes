@@ -1,5 +1,6 @@
 <h1>{{ recipe.title }}</h1>
 <p>{% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
+(<a href="/recipes/{{ recipe.slug }}/delete-favorite/">Remove From Favorites</a>)
 {% else %}<a href="add-favorite">Add to Favorites</a>{% endif %}</p>
 
 <p class="description">{{ recipe.description }}</p>

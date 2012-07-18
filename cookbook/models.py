@@ -5,6 +5,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     slug = models.SlugField()
+    favorite_by = models.ManyToManyField(User, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -38,9 +39,4 @@ class Note(models.Model):
 
     def __unicode__(self):
         return self.note_text
-
-class Favorite(models.Model):
-    recipe = models.ForeignKey(Recipe)
-    user = models.ForeignKey(User)
-    date_added = models.DateTimeField(auto_now_add=True)
 

@@ -1,7 +1,9 @@
 <h1>Recipes</h1>
 <ul>
 {% for r in all_recipes %}
-  <li><strong><a href="/recipes/{{ r.slug }}/" title="{{ r.title }}">{{ r.title }}</a></strong><br>
+  <li><strong><a href="/recipes/{{ r.slug }}/" title="{{ r.title }}">{{ r.title }}</a></strong>
+  {% if user in r.favorite_by.all %}*{% endif %}
+  <br>
   {{ r.description }}</li>
 {% endfor %}
 </ul>
