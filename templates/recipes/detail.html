@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
 <h1>{{ recipe.title }}</h1>
 <p>{% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
 (<a href="/recipes/{{ recipe.slug }}/delete-favorite/">Remove From Favorites</a>)
@@ -9,7 +13,7 @@
 <h2>Ingredients</h2>
 <ul class="ingredients">
   {% for i in recipe.ingredient_set.all %}
-  <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong></li>
+  <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong> <a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>
   {% endfor %}
 </ul>
 {% endif %}
@@ -32,5 +36,4 @@
 </ul>
 {% endif %}
 
-<p><a href="/recipes/" title="All Recipes">View All Recipes</a></p>
-<p><a href="/recipes/favorites" title="Favorite Recipes">View My Favorite Recipes</a></p>
+{% endblock %}

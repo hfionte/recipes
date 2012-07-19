@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
 <h1>My Favorite Recipes</h1>
 {% if favorites|length > 0 %}
 <ul>
@@ -10,4 +14,4 @@
 <p>You have no favorie recipes selected.</p>
 {% endif %}
 
-<p><a href="/recipes/">View All Recipes</a></p>
+{% endblock %}

@@ -15,6 +15,7 @@ class Ingredient(models.Model):
     order = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=200)
     quantity = models.CharField(max_length=200, null=True, blank=True)
+    needed_by = models.ManyToManyField(User, blank=True)
 
     class Meta:
         ordering = ["order"]

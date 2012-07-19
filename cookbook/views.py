@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, redirect
-from cookbook.models import Recipe
+from cookbook.models import Recipe, Ingredient
 
 def index(request):
     all_recipes = Recipe.objects.all()
@@ -36,3 +36,25 @@ def delete_favorite(request, name):
     fav_recipe.favorite_by.remove(request.user)
     fav_recipe.save()
     return redirect('/recipes/favorites/')
+
+def shopping_list(request):
+    needed_ingredients = Ingredient.objects.filter(needed_by=request.user)
+    return render_to_response('recipes/shopping-list.html', {'ingredients': needed_ingredients})
+
+def add_ingredient(request, item_id):
+    try:
+        list_ingredient = Ingredient.objects.get(pk=item_id)
+    except Ingredient.DoesNotExist:
+        raise Http404
+    list_ingredient.needed_by.add(request.user)
+    list_ingredient.save()
+    return redirect('/shopping-list/')
+
+def delete_ingredient(request, item_id):
+    try:
+        list_ingredient = Ingredient.objects.get(pk=item_id)
+    except Ingredient.DoesNotExist:
+        raise Http404
+    list_ingredient.needed_by.remove(request.user)
+    list_ingredient.save()
+    return redirect('/shopping-list/')
