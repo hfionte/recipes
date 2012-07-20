@@ -7,6 +7,9 @@ class Recipe(models.Model):
     slug = models.SlugField()
     favorite_by = models.ManyToManyField(User, blank=True)
 
+    def rating(self):
+        return len(self.favorite_by.all())
+
     def __unicode__(self):
         return self.title
 

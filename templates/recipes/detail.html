@@ -1,39 +1,47 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-
-<h1>{{ recipe.title }}</h1>
-<p>{% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
+  <h1>{{ recipe.title }}</h1>
+  <p>
+    {{ recipe.rating }} 
+    {% ifequal recipe.rating 1 %}person has
+    {% else %}people have{% endifequal %}
+    favorited this recipe.
+  </p>
+  
+  <p>
+    {% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
 (<a href="/recipes/{{ recipe.slug }}/delete-favorite/">Remove From Favorites</a>)
-{% else %}<a href="add-favorite">Add to Favorites</a>{% endif %}</p>
+    {% else %}<a href="add-favorite">Add to Favorites</a>{% endif %}
+  </p>
 
-<p class="description">{{ recipe.description }}</p>
+  <p class="description">{{ recipe.description }}</p>
 
-{% if recipe.ingredient_set.all|length > 0 %}
-<h2>Ingredients</h2>
-<ul class="ingredients">
-  {% for i in recipe.ingredient_set.all %}
-  <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong> <a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>
-  {% endfor %}
-</ul>
-{% endif %}
+  {% if recipe.ingredient_set.all|length > 0 %}
+  <h2>Ingredients</h2>
+  <ul class="ingredients">
+    {% for i in recipe.ingredient_set.all %}
+    <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong> <a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
-{% if recipe.step_set.all|length > 0 %}
-<h2>Steps</h2>
-<ol class="steps">
-  {% for s in recipe.step_set.all %}
-  <li>{{ s.step_text }}</li>
-  {% endfor %}
-</ol>
-{% endif %}
+  {% if recipe.step_set.all|length > 0 %}
+  <h2>Steps</h2>
+  <ol class="steps">
+    {% for s in recipe.step_set.all %}
+    <li>{{ s.step_text }}</li>
+    {% endfor %}
+  </ol>
+  {% endif %}
 
-{% if recipe.note_set.all|length > 0 %}
-<h2>Notes</h2>
-<ul class="notes">
-  {% for n in recipe.note_set.all %}
-  <li>{{ n.note_text }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
+  {% if recipe.note_set.all|length > 0 %}
+  <h2>Notes</h2>
+  <ul class="notes">
+    {% for n in recipe.note_set.all %}
+    <li>{{ n.note_text }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
 {% endblock %}
