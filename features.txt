@@ -1,6 +1,8 @@
-Sort by Tag
-Sort by most liked
+Sort by Tag -- added tag field
+Sort by most liked -- added rating field
 Recently viewed
 Add misc items to shopping list
 Styles
 Apache
+South -- converted to south
+AJAX filtering

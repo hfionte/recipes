@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block main_content %}
+<h1>Recipes by Tag</h1>
+
+<ul>
+{% for t in all_tags %}
+  <li>{{ t.name }}
+    <ul>
+    {% for r in t.recipe_set.all %}
+      <li><strong><a href="/recipes/{{ r.slug }}/" title="{{ r.title }}">{{ r.title }}</a></strong>
+      {% if user in r.favorite_by.all %}*{% endif %}
+      <br>
+      {{ r.description }}</li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

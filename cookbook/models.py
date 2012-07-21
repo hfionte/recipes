@@ -1,11 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class RecipeTag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     slug = models.SlugField()
     favorite_by = models.ManyToManyField(User, blank=True)
+    recipe_tags = models.ManyToManyField(RecipeTag, blank=True)
 
     def rating(self):
         return len(self.favorite_by.all())

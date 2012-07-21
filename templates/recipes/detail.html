@@ -8,12 +8,14 @@
     {% else %}people have{% endifequal %}
     favorited this recipe.
   </p>
-  
+
+  {% if user.is_authenticated %}  
   <p>
     {% if my_fav %}Favorite Recipe (<a href="/recipes/favorites/">View All Favorites</a>)
 (<a href="/recipes/{{ recipe.slug }}/delete-favorite/">Remove From Favorites</a>)
     {% else %}<a href="add-favorite">Add to Favorites</a>{% endif %}
   </p>
+  {% endif %}
 
   <p class="description">{{ recipe.description }}</p>
 
@@ -21,7 +23,8 @@
   <h2>Ingredients</h2>
   <ul class="ingredients">
     {% for i in recipe.ingredient_set.all %}
-    <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong> <a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>
+    <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong>
+    {% if user.is_authenticated %}<a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>{% endif %}
     {% endfor %}
   </ul>
   {% endif %}
