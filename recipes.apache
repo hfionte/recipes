@@ -3,14 +3,16 @@
 	ServerAlias recipes.localhost
 	ServerAlias recipes.cooper
 	ServerAlias recipes
+	ServerAlias recipes.bumblebeehill.org
+	ServerAlias cb.bumblebeehill.org
 
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
 
-	DocumentRoot /var/web/recipes_env/recipes/media
-	<Directory /var/web/recipes_env/recipes/media/>
+	DocumentRoot /var/web/recipes_env/recipes/static
+	<Directory /var/web/recipes_env/recipes/static/>
 		Order allow,deny
 		allow from all
 	</Directory>
@@ -23,12 +25,11 @@
 		Allow from all
 	</Directory>
 
-	Alias /robots.txt /var/web/recipes_env/recipes/media/robots.txt
-	Alias /favicon.ico /var/web/recipes_env/recipes/media/favicon.ico
-	Alias /media/ /var/web/recipes_env/recipes/media/
+	Alias /robots.txt /var/web/recipes_env/recipes/static/robots.txt
+	Alias /favicon.ico /var/web/recipes_env/recipes/static/favicon.ico
 
-	Alias /djmedia/ /var/web/recipes_env/recipes/media/djmedia/
-	<Directory /var/web/recipes_env/recipes/media/djmedia>
+	Alias /static/ /var/web/recipes_env/recipes/static/
+	<Directory /var/web/recipes_env/recipes/static>
 		Order allow,deny
 		Allow from all
 	</Directory>
