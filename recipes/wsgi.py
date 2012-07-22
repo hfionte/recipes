@@ -14,8 +14,13 @@ framework.
 
 """
 import os
+import sys
+import site
 
+site.addsitedir("/var/web/recipes_env/lib/python2.7/site-packages/")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "recipes.settings")
+sys.path.append("/var/web/recipes_env/recipes/")
+
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

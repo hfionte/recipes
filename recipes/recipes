@@ -1,0 +1,41 @@
+<VirtualHost *:80>
+	ServerName recipes.cooper.bumblebeehill.org
+	ServerAlias recipes.localhost
+	ServerAlias recipes.cooper
+	ServerAlias recipes
+
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	DocumentRoot /var/web/recipes_env/recipes/media
+	<Directory /var/web/recipes_env/recipes/media/>
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	WSGIDaemonProcess recipes
+	WSGIProcessGroup recipes
+	WSGIScriptAlias / /var/web/recipes_env/recipes/recipes/wsgi.py
+	<Directory /var/web/recipes_env/recipes/recipes>
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	Alias /robots.txt /var/web/recipes_env/recipes/media/robots.txt
+	Alias /favicon.ico /var/web/recipes_env/recipes/media/favicon.ico
+	Alias /media/ /var/web/recipes_env/recipes/media/
+
+	Alias /djmedia/ /var/web/recipes_env/recipes/media/djmedia/
+	<Directory /var/web/recipes_env/recipes/media/djmedia>
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	ServerAdmin webmaster@localhost
+	LogLevel warn
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
