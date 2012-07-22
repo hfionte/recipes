@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main_content %}
 <h1>Recipes</h1>
-<ul>
+<ul class="recipes">
 {% for r in all_recipes %}
   <li><strong><a href="/recipes/{{ r.slug }}/" title="{{ r.title }}">{{ r.title }}</a></strong>
   {% if user in r.favorite_by.all %}*{% endif %}

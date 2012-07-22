@@ -1,6 +1,5 @@
-<h3>Navigation:</h3>
-<ul>
-  <li><a href="/">View All Recipes</a></li>
-  <li><a href="{% if user.is_authenticated %}/recipes/favorites/{% else %}/admin/{% endif %}">View My Favorite Recipes</a></li>
-  <li><a href="/shopping-list/">View My Shopping List</a></li>
+<ul id="main_nav">
+  <li><a href="/">All</a></li>
+  <li><a href="{% if user.is_authenticated %}/recipes/favorites/{% else %}/admin/{% endif %}">Favorites</a></li>
+  <li><a href="{% if user.is_authenticated %}/shopping-list/{% else %}/admin/{% endif %}">Shopping List</a></li>
 </ul>
