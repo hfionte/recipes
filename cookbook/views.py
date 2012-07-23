@@ -25,7 +25,8 @@ def recipe_detail(request, name):
 @login_required
 def favorites(request):
     favorites = Recipe.objects.filter(favorite_by=request.user)
-    return render_to_response('recipes/favorites.html', {'favorites': favorites})
+    user = request.user
+    return render_to_response('recipes/favorites.html', {'favorites': favorites, 'user': user})
 
 @login_required
 def add_favorite(request, name):
@@ -50,7 +51,8 @@ def delete_favorite(request, name):
 @login_required
 def shopping_list(request):
     needed_ingredients = Ingredient.objects.filter(needed_by=request.user)
-    return render_to_response('recipes/shopping-list.html', {'ingredients': needed_ingredients})
+    user = request.user
+    return render_to_response('recipes/shopping-list.html', {'ingredients': needed_ingredients, 'user': user})
 
 @login_required
 def add_ingredient(request, item_id):
