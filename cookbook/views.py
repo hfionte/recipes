@@ -56,20 +56,27 @@ def shopping_list(request):
 
 @login_required
 def add_ingredient(request, item_id):
+    user = request.user
     try:
         list_ingredient = Ingredient.objects.get(pk=item_id)
     except Ingredient.DoesNotExist:
         raise Http404
-    list_ingredient.needed_by.add(request.user)
+    list_ingredient.needed_by.add(user)
     list_ingredient.save()
-    return redirect('/shopping-list/')
+    recipe = list_ingredient.recipe
+    return render_to_response('recipes/ingredient_list.html', {'recipe': recipe, 'user': user})
 
 @login_required
-def delete_ingredient(request, item_id):
+def delete_ingredient(request, item_id, from_where):
+    user = request.user
     try:
         list_ingredient = Ingredient.objects.get(pk=item_id)
     except Ingredient.DoesNotExist:
         raise Http404
     list_ingredient.needed_by.remove(request.user)
     list_ingredient.save()
-    return redirect('/shopping-list/')
+    if from_where == "-from-recipe":
+        recipe = list_ingredient.recipe
+        return render_to_response('recipes/ingredient_list.html', {'recipe': recipe, 'user': user})
+    else:
+        return redirect('/shopping-list/')

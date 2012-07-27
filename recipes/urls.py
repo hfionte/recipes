@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^recipes/(?P<name>[-\w]+)/delete-favorite/$', 'cookbook.views.delete_favorite'),
     url(r'^shopping-list/$', 'cookbook.views.shopping_list'),
     url(r'^shopping-list/(?P<item_id>\d+)/add/$', 'cookbook.views.add_ingredient'),
-    url(r'^shopping-list/(?P<item_id>\d+)/delete/$', 'cookbook.views.delete_ingredient'),
+    url(r'^shopping-list/(?P<item_id>\d+)/delete(?P<from_where>[-\w]+)/$', 'cookbook.views.delete_ingredient'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

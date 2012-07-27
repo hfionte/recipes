@@ -22,10 +22,7 @@
   {% if recipe.ingredient_set.all|length > 0 %}
   <h2>Ingredients</h2>
   <ul class="ingredients">
-    {% for i in recipe.ingredient_set.all %}
-    <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong>
-    {% if user.is_authenticated %}<a href="/shopping-list/{{ i.pk }}/add/">Add</a></li>{% endif %}
-    {% endfor %}
+    {% include "recipes/ingredient_list.html" %}
   </ul>
   {% endif %}
 

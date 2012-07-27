@@ -1,0 +1,15 @@
+{% for i in recipe.ingredient_set.all %}
+
+<li>
+{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong>
+{% if user.is_authenticated %}
+  {% if user in i.needed_by.all %}
+    <a href="/shopping-list/{{ i.pk }}/delete-from-recipe/" class="delete-ingredient">Remove</a>
+  {% else %}
+    <a href="/shopping-list/{{ i.pk }}/add/" class="add-ingredient">Add</a>
+  {% endif %}
+{% endif %}
+</li>
+
+{% endfor %}
+
