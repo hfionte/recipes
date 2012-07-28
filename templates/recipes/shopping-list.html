@@ -3,14 +3,8 @@
 {% block main_content %}
 
 <h1>Shopping List</h1>
-{% if ingredients|length > 0 %}
-<ul class="shopping_list">
-  {% for i in ingredients %}
-  <li>{% if i.quantity %}<em>{{ i.quantity }}</em> {% endif %}<strong>{{ i.name }}</strong> for <a href="/recipes/{{ i.recipe.slug }}/">{{ i.recipe.title }}</a> <em>(<a href="/shopping-list/{{ i.pk }}/delete-from-shopping/">delete</a>)</em></li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>You have no items in your shopping list.</p>
-{% endif %}
+<div id="shopping_list">
+    {% include "recipes/shopping_list_items.html" %}
+</div>
 
 {% endblock %}

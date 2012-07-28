@@ -50,8 +50,8 @@ def delete_favorite(request, name):
 
 @login_required
 def shopping_list(request):
-    needed_ingredients = Ingredient.objects.filter(needed_by=request.user)
     user = request.user
+    needed_ingredients = Ingredient.objects.filter(needed_by=user)
     return render_to_response('recipes/shopping-list.html', {'ingredients': needed_ingredients, 'user': user})
 
 @login_required
@@ -79,4 +79,6 @@ def delete_ingredient(request, item_id, from_where):
         recipe = list_ingredient.recipe
         return render_to_response('recipes/ingredient_list.html', {'recipe': recipe, 'user': user})
     else:
-        return redirect('/shopping-list/')
+        needed_ingredients = Ingredient.objects.filter(needed_by=user)
+        return render_to_response('recipes/shopping_list_items.html', {'ingredients': needed_ingredients, 'user': user})
+
