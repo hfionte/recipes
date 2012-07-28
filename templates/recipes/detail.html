@@ -17,7 +17,8 @@
   </p>
   {% endif %}
 
-  <p class="description">{{ recipe.description }}</p>{{ recipe.original_source|safe }}
+  <p class="description">{{ recipe.description }}</p>
+  {% if recipe.original_source %}{{ recipe.original_source|safe }}{% endif %}
 
   {% if recipe.ingredient_set.all|length > 0 %}
   <h2>Ingredients</h2>
