@@ -271,8 +271,7 @@ header #main_nav li  {
 }
 ul.recipes,
 ul.shopping_list,
-ul.ingredients,
-ol.steps {
+ul.ingredients {
   padding-left: 0;
 }
 ul.recipes li,
@@ -287,7 +286,9 @@ ol.steps li {
   padding: 10px;
   margin-bottom: 5px;
 }
-
+ol.steps li {
+  list-style-type: decimal;
+}
 
 
 

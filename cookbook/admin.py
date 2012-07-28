@@ -4,7 +4,7 @@ from cookbook.models import Recipe, RecipeTag, Ingredient, Step, Note
 class IngredientInline(admin.TabularInline):
     model = Ingredient
     extra = 3
-    fields = ['order', 'name', 'quantity']
+    fields = ['quantity', 'name']
 
 class StepInline(admin.TabularInline):
     model = Step
@@ -15,7 +15,7 @@ class NoteInline(admin.TabularInline):
     extra = 1
 
 class RecipeAdmin(admin.ModelAdmin):
-    fields = ['title', 'slug', 'description', 'recipe_tags']
+    fields = ['title', 'slug', 'description', 'recipe_tags', 'original_source', 'related_recipes']
     inlines = [IngredientInline, StepInline, NoteInline]
     list_display = ('title', 'description')
     prepopulated_fields = {"slug": ("title",)}

@@ -17,7 +17,7 @@
   </p>
   {% endif %}
 
-  <p class="description">{{ recipe.description }}</p>
+  <p class="description">{{ recipe.description }}</p>{{ recipe.original_source|safe }}
 
   {% if recipe.ingredient_set.all|length > 0 %}
   <h2>Ingredients</h2>
@@ -30,7 +30,7 @@
   <h2>Steps</h2>
   <ol class="steps">
     {% for s in recipe.step_set.all %}
-    <li>{{ s.step_text }}</li>
+    <li>{{ s.step_text|safe }}</li>
     {% endfor %}
   </ol>
   {% endif %}
@@ -39,7 +39,7 @@
   <h2>Notes</h2>
   <ul class="notes">
     {% for n in recipe.note_set.all %}
-    <li>{{ n.note_text }}</li>
+    <li>{{ n.note_text|safe }}</li>
     {% endfor %}
   </ul>
   {% endif %}

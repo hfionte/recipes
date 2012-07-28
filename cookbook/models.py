@@ -13,6 +13,8 @@ class Recipe(models.Model):
     slug = models.SlugField()
     favorite_by = models.ManyToManyField(User, blank=True)
     recipe_tags = models.ManyToManyField(RecipeTag, blank=True)
+    related_recipes = models.ManyToManyField('self', blank=True)
+    original_source = models.TextField(null=True, blank=True)
 
     def rating(self):
         return len(self.favorite_by.all())
