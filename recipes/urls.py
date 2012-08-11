@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 
     # Feeds:
     url(r'^feeds/recipes$', AllRecipesFeed()),
+    url(r'^json/recipes$', 'cookbook.views.index_json'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

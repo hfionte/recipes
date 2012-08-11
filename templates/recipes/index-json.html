@@ -1,0 +1,23 @@
+[
+{% for r in all_recipes %}
+    {
+        "pk": {{ r.pk }},
+        "fields": {
+            "favorite_by": [],
+            "user_favorite": "{% if user in r.favorite_by.all %}true{% endif %}",
+            "description": "{{ r.description }}",
+            "related_recipes": [],
+            "title": "{{ r.title }}",
+            "original_source": {{ r.original_source }},
+            "recipe_tags": [{% for t in r.recipe_tag_set.all %}"{{ t.name }}"{% if not forloop.last %},{% endif %}{% endfor %}],
+            "slug": "{{ r.slug }}",
+            "ingredients": [{% for i in r.ingredient_set.all %}
+              {
+                "name": "{{ i.name }}",
+                "quantity": "{{ i.quantity }}"
+              }{% if not forloop.last %},{% endif %}{% endfor %}
+            ]
+        }
+    }{% if not forloop.last %},{% endif %}
+{% endfor %}
+]

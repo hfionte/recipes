@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response, redirect
+from django.http import HttpResponse
 from cookbook.models import Recipe, RecipeTag, Ingredient
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 def index(request):
     all_recipes = Recipe.objects.all()
@@ -11,6 +13,14 @@ def index_by_tag(request):
     all_tags = RecipeTag.objects.all()
     user = request.user
     return render_to_response('recipes/index_by_tag.html', {'all_tags': all_tags, 'user': user})
+
+def index_json(request):
+    #all_recipes = Recipe.objects.all()
+    #data = serializers.serialize('json', all_recipes)
+    #return HttpResponse(data)
+    all_recipes = Recipe.objects.all()
+    user = request.user
+    return render_to_response('recipes/index-json.html', {'all_recipes': all_recipes, 'user': user})
 
 def recipe_detail(request, name):
     try:
