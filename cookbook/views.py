@@ -20,7 +20,10 @@ def index_json(request):
     #return HttpResponse(data)
     all_recipes = Recipe.objects.all()
     user = request.user
-    return render_to_response('recipes/index-json.html', {'all_recipes': all_recipes, 'user': user})
+    return render_to_response('recipes/index-json.html',
+        {'all_recipes': all_recipes, 'user': user},
+        mimetype="application/json"
+    )
 
 def recipe_detail(request, name):
     try:
