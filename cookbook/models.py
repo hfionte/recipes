@@ -16,6 +16,9 @@ class Recipe(models.Model):
     related_recipes = models.ManyToManyField('self', blank=True)
     original_source = models.TextField(null=True, blank=True)
 
+    def get_absolute_url(self):
+        return "/recipes/%s/" % self.slug
+
     def rating(self):
         return len(self.favorite_by.all())
 

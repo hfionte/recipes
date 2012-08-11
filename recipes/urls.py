@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from cookbook.feeds import AllRecipesFeed
 
 from django.contrib import admin
 admin.autodiscover()
@@ -16,6 +17,9 @@ urlpatterns = patterns('',
     url(r'^shopping-list/$', 'cookbook.views.shopping_list'),
     url(r'^shopping-list/(?P<item_id>\d+)/add/$', 'cookbook.views.add_ingredient'),
     url(r'^shopping-list/(?P<item_id>\d+)/delete(?P<from_where>[-\w]+)/$', 'cookbook.views.delete_ingredient'),
+
+    # Feeds:
+    url(r'^feeds/recipes$', AllRecipesFeed()),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
