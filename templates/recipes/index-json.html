@@ -1,3 +1,5 @@
+{% spaceless %}
+
 [
 {% for r in all_recipes %}
     {
@@ -21,3 +23,5 @@
     }{% if not forloop.last %},{% endif %}
 {% endfor %}
 ]
+
+{% endspaceless %}
